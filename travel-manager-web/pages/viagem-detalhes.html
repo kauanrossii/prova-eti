@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <main style="display: flex; flex-direction: column">
+        <a href="../index.html">Voltar</a>
+        
+        <div style="display: flex; gap: 15px;">
+            <button id="botao-cadastrar">Cadastrar</button>
+            <button id="botao-editar">Editar</button>
+            <button id="botao-excluir">Excluir</button>
+        </div>
+        
+        <div style="display: flex">
+            <div style="display: flex; gap: 10px;">
+                <label for="input-nome">Nome:</label>
+                <input type="text" id="input-nome" />
+                <label for="input-data-saida">Data de Saída:</label>
+                <input type="date" id="input-data-saida" />
+                <label for="input-data-chegada">Data de Chegada:</label>
+                <input type="date" id="input-data-chegada" />
+                <label for="input-valor">Valor:</label>
+                <input type="number" id="input-valor" />
+            </div>
+        </div>
+        
+        <div style="display: flex; gap: 15px;">
+            <button id="botao-salvar" style="display: none;">Salvar</button>
+            <button id="botao-cancelar" style="display: none;">Cancelar</button>
+        </div>
+        <div>
+            <p>Destinos selecionados</p>
+            <ul id="destinos-lista">
+            </ul>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+            <label for="select-destinos">Adicione um destino:</label>
+            <select id="select-destinos" style="max-width: 200px">
+                <option value="">Selecione uma opção</option>
+            </select>
+        </div>
+    </main>
+    
+    <script src="../scripts/viagem-detalhes.js"></script>
+</body>
+</html>
