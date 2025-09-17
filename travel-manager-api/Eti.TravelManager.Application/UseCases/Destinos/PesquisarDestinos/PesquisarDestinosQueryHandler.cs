@@ -24,6 +24,8 @@ public class PesquisarDestinosQueryHandler : IUseCase<PesquisarDestinosQuery, Re
         {
             query = query.Where(x => x.Nome.Contains(requisicao.Filtros.Nome));
         }
+
+        var totalRegistros = await query.CountAsync(cancellationToken: cancellationToken);
         
         var resultado = await _context.Destinos
             .Skip(requisicao.Paginacao.QuantidadeRegistros * (requisicao.Paginacao.NumeroPagina - 1))
@@ -38,7 +40,7 @@ public class PesquisarDestinosQueryHandler : IUseCase<PesquisarDestinosQuery, Re
         return ResultDto<ResultadoPaginado<DestinoDto>>.ComSucesso(new ResultadoPaginado<DestinoDto>(
             requisicao.Paginacao.NumeroPagina,
             requisicao.Paginacao.QuantidadeRegistros,
-            requisicao.Paginacao.QuantidadeRegistros,
+            totalRegistros,
             resultado
         ));
     }

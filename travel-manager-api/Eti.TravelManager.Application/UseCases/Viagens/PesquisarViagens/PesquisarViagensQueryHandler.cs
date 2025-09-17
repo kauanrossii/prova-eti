@@ -27,6 +27,8 @@ public class PesquisarViagensQueryHandler : IUseCase<PesquisarViagensQuery, Resu
             query = query.Where(x => x.Nome.Contains(request.Filtros.Nome));
         }
         
+        var totalRegistros = await query.CountAsync(cancellationToken: cancellationToken);
+        
         var resultado = await _context.Viagens
             .Skip(request.Paginacao.QuantidadeRegistros * (request.Paginacao.NumeroPagina - 1))
             .Take(request.Paginacao.QuantidadeRegistros)
@@ -47,7 +49,7 @@ public class PesquisarViagensQueryHandler : IUseCase<PesquisarViagensQuery, Resu
         return ResultDto<ResultadoPaginado<ViagemDto>>.ComSucesso(new ResultadoPaginado<ViagemDto>(
             request.Paginacao.NumeroPagina,
             request.Paginacao.QuantidadeRegistros,
-            request.Paginacao.QuantidadeRegistros,
+            totalRegistros,
             resultado
         ));
     }
